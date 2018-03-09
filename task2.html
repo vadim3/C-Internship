@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <!-- Тег meta для указания кодировки -->
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <script>
+function isPrime(x,primes){
+	for (var j=0, len=primes.length; j<len; j++){
+		if (x%primes[j]==0) return false;
+	}
+	return true;
+}
+
+function task2(n) {
+	for (var i=4, count=2, primes=[2,3]; i<=n; i++){
+		// если число - четное
+		if (i%2==0) {
+			count+=i/2-1;
+		} else {
+			// нечетное
+			count+=(i-1)/2-1;
+			// если нельзя представить как сумму двух простых чисел
+			if (i!=(primes[primes.length-1]+2)) {
+				count--;
+			}
+			// если число - простое
+			if (isPrime(i,primes)) {
+				count++;
+				// добавляем новое простое число в общий ряд
+				primes[primes.length]=i;
+			}
+		}
+	}
+	return count;
+}
+document.write(task2(16541));
+
+</script>
+
+</body>
+
+</html>
